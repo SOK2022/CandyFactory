@@ -1,0 +1,65 @@
+﻿<Page x:Class="CandyFactory.pages.CompositionsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CandyFactory.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CompositionsPage">
+    <Grid Background="#fff">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15">Составы конфет на 1 кг</TextBlock>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"></ColumnDefinition>
+                <ColumnDefinition Width="15*"></ColumnDefinition>
+                <ColumnDefinition Width="15*"></ColumnDefinition>
+                <ColumnDefinition Width="15*"></ColumnDefinition>
+                <ColumnDefinition Width="10"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="15*"></RowDefinition>
+                <RowDefinition Height="15*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Click="ShowAddCompositionPage_Click" Style="{StaticResource myButton}" Grid.Column="1" Grid.Row="1" Content="Добавить состав"></Button>
+            <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="1" Name="SortTypeBox">
+                <Label HorizontalAlignment="Center">Введите название конфеты для фильтрации</Label>
+                <TextBox TextChanged="FilterComposition" Name="CompositionFilter" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250"></TextBox>
+            </StackPanel>
+            <Button Click="ClearFilter_Click" Style="{StaticResource myButton}" Grid.Column="3" Grid.Row="1" Content="Очистить фильтр"></Button>
+        </Grid>
+        <DataGrid IsReadOnly="True" Name="CompositionList" Grid.Row="2" AutoGenerateColumns="False" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Идентификатор состава" Binding="{Binding CompositionId}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Идентификатор конфеты" Binding="{Binding CandyId}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название конфеты" Binding="{Binding Candies.CandyName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Идентификатор компонента" Binding="{Binding ComponentId}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название компонента" Binding="{Binding Components.ComponentName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Количество компонента" Binding="{Binding ComponentAmount}"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>Редактирование</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="ShowEditCompositionPage_Click" Style="{StaticResource myButton}">Редактировать</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>Удаление</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="DeleteComposition_Click" Style="{StaticResource myButton}">Удалить</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
