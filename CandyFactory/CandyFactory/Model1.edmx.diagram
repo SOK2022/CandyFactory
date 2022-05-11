@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e61d77ff822e488aa05bad26c9906bfd" Name="Diagram1">
+        <EntityTypeShape EntityType="CandyFactoryModel.Boxes" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyFactoryModel.Candies" Width="1.5" PointX="0.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyFactoryModel.ComponentOrders" Width="1.5" PointX="9.125" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyFactoryModel.Components" Width="1.5" PointX="5.625" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyFactoryModel.Compositions" Width="1.5" PointX="10.125" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyFactoryModel.Counterparties" Width="1.5" PointX="2.875" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyFactoryModel.CustomerOrders" Width="1.5" PointX="5.625" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyFactoryModel.sysdiagrams" Width="1.5" PointX="11" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="CandyFactoryModel.FK_Boxes_Candies" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyFactoryModel.FK_CustomerOrders_Boxes" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyFactoryModel.FK_Composition_Candies" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyFactoryModel.FK_ComponentOrders_Components" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyFactoryModel.FK_ComponentOrders_Counterparties" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyFactoryModel.FK_ComponentOrders_CustomerOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyFactoryModel.FK_Components_Counterparties" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyFactoryModel.FK_Composition_Components" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyFactoryModel.FK_CustomerOrders_Counterparties" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
