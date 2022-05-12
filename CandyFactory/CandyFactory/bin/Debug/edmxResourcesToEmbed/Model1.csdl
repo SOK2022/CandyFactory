@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CandyFactoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Boxes">
+    <Key>
+      <PropertyRef Name="BoxId" />
+    </Key>
+    <Property Name="BoxId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BoxWeight" Type="Double" />
+    <Property Name="BoxName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="CandyId" Type="Int32" />
+    <NavigationProperty Name="Candies" Relationship="Self.FK_Boxes_Candies" FromRole="Boxes" ToRole="Candies" />
+    <NavigationProperty Name="CustomerOrders" Relationship="Self.FK_CustomerOrders_Boxes" FromRole="Boxes" ToRole="CustomerOrders" />
+  </EntityType>
+  <EntityType Name="Candies">
+    <Key>
+      <PropertyRef Name="CandyId" />
+    </Key>
+    <Property Name="CandyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CandyName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Boxes" Relationship="Self.FK_Boxes_Candies" FromRole="Candies" ToRole="Boxes" />
+    <NavigationProperty Name="Compositions" Relationship="Self.FK_Composition_Candies" FromRole="Candies" ToRole="Compositions" />
+  </EntityType>
+  <EntityType Name="ComponentOrders">
+    <Key>
+      <PropertyRef Name="ComponentOrderId" />
+    </Key>
+    <Property Name="ComponentOrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerOrderId" Type="Int32" Nullable="false" />
+    <Property Name="ComponentId" Type="Int32" Nullable="false" />
+    <Property Name="ComponentName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="ComponentAmount" Type="Double" />
+    <Property Name="CounterpartyId" Type="Int32" Nullable="false" />
+    <Property Name="CounterpartyName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="OrderSum" Type="Single" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Components" Relationship="Self.FK_ComponentOrders_Components" FromRole="ComponentOrders" ToRole="Components" />
+    <NavigationProperty Name="Counterparties" Relationship="Self.FK_ComponentOrders_Counterparties" FromRole="ComponentOrders" ToRole="Counterparties" />
+    <NavigationProperty Name="CustomerOrders" Relationship="Self.FK_ComponentOrders_CustomerOrders" FromRole="ComponentOrders" ToRole="CustomerOrders" />
+  </EntityType>
+  <EntityType Name="Components">
+    <Key>
+      <PropertyRef Name="ComponentId" />
+    </Key>
+    <Property Name="ComponentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ComponentName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="CounterpartyId" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Single" />
+    <Property Name="CounterpartyName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="ComponentOrders" Relationship="Self.FK_ComponentOrders_Components" FromRole="Components" ToRole="ComponentOrders" />
+    <NavigationProperty Name="Counterparties" Relationship="Self.FK_Components_Counterparties" FromRole="Components" ToRole="Counterparties" />
+    <NavigationProperty Name="Compositions" Relationship="Self.FK_Composition_Components" FromRole="Components" ToRole="Compositions" />
+  </EntityType>
+  <EntityType Name="Compositions">
+    <Key>
+      <PropertyRef Name="CompositionId" />
+    </Key>
+    <Property Name="CompositionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CandyId" Type="Int32" Nullable="false" />
+    <Property Name="CandyName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="ComponentId" Type="Int32" Nullable="false" />
+    <Property Name="ComponentName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="ComponentAmount" Type="Double" />
+    <NavigationProperty Name="Candies" Relationship="Self.FK_Composition_Candies" FromRole="Compositions" ToRole="Candies" />
+    <NavigationProperty Name="Components" Relationship="Self.FK_Composition_Components" FromRole="Compositions" ToRole="Components" />
+  </EntityType>
+  <EntityType Name="Counterparties">
+    <Key>
+      <PropertyRef Name="CounterpartyId" />
+    </Key>
+    <Property Name="CounterpartyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CounterpartyName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="PhoneNumber" Type="Int32" />
+    <NavigationProperty Name="ComponentOrders" Relationship="Self.FK_ComponentOrders_Counterparties" FromRole="Counterparties" ToRole="ComponentOrders" />
+    <NavigationProperty Name="Components" Relationship="Self.FK_Components_Counterparties" FromRole="Counterparties" ToRole="Components" />
+    <NavigationProperty Name="CustomerOrders" Relationship="Self.FK_CustomerOrders_Counterparties" FromRole="Counterparties" ToRole="CustomerOrders" />
+  </EntityType>
+  <EntityType Name="CustomerOrders">
+    <Key>
+      <PropertyRef Name="CustomerOrderId" />
+    </Key>
+    <Property Name="CustomerOrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BoxId" Type="Int32" Nullable="false" />
+    <Property Name="BoxName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="BoxWeight" Type="Double" />
+    <Property Name="BoxAmount" Type="Int32" />
+    <Property Name="CounterpartyId" Type="Int32" Nullable="false" />
+    <Property Name="CounterpartyName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="OrderSum" Type="Single" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Boxes" Relationship="Self.FK_CustomerOrders_Boxes" FromRole="CustomerOrders" ToRole="Boxes" />
+    <NavigationProperty Name="ComponentOrders" Relationship="Self.FK_ComponentOrders_CustomerOrders" FromRole="CustomerOrders" ToRole="ComponentOrders" />
+    <NavigationProperty Name="Counterparties" Relationship="Self.FK_CustomerOrders_Counterparties" FromRole="CustomerOrders" ToRole="Counterparties" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Boxes_Candies">
+    <End Role="Candies" Type="Self.Candies" Multiplicity="0..1" />
+    <End Role="Boxes" Type="Self.Boxes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candies">
+        <PropertyRef Name="CandyId" />
+      </Principal>
+      <Dependent Role="Boxes">
+        <PropertyRef Name="CandyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerOrders_Boxes">
+    <End Role="Boxes" Type="Self.Boxes" Multiplicity="1" />
+    <End Role="CustomerOrders" Type="Self.CustomerOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Boxes">
+        <PropertyRef Name="BoxId" />
+      </Principal>
+      <Dependent Role="CustomerOrders">
+        <PropertyRef Name="BoxId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Composition_Candies">
+    <End Role="Candies" Type="Self.Candies" Multiplicity="1" />
+    <End Role="Compositions" Type="Self.Compositions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candies">
+        <PropertyRef Name="CandyId" />
+      </Principal>
+      <Dependent Role="Compositions">
+        <PropertyRef Name="CandyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComponentOrders_Components">
+    <End Role="Components" Type="Self.Components" Multiplicity="1" />
+    <End Role="ComponentOrders" Type="Self.ComponentOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Components">
+        <PropertyRef Name="ComponentId" />
+      </Principal>
+      <Dependent Role="ComponentOrders">
+        <PropertyRef Name="ComponentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComponentOrders_Counterparties">
+    <End Role="Counterparties" Type="Self.Counterparties" Multiplicity="1" />
+    <End Role="ComponentOrders" Type="Self.ComponentOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Counterparties">
+        <PropertyRef Name="CounterpartyId" />
+      </Principal>
+      <Dependent Role="ComponentOrders">
+        <PropertyRef Name="CounterpartyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComponentOrders_CustomerOrders">
+    <End Role="CustomerOrders" Type="Self.CustomerOrders" Multiplicity="1" />
+    <End Role="ComponentOrders" Type="Self.ComponentOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerOrders">
+        <PropertyRef Name="CustomerOrderId" />
+      </Principal>
+      <Dependent Role="ComponentOrders">
+        <PropertyRef Name="CustomerOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Components_Counterparties">
+    <End Role="Counterparties" Type="Self.Counterparties" Multiplicity="1" />
+    <End Role="Components" Type="Self.Components" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Counterparties">
+        <PropertyRef Name="CounterpartyId" />
+      </Principal>
+      <Dependent Role="Components">
+        <PropertyRef Name="CounterpartyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Composition_Components">
+    <End Role="Components" Type="Self.Components" Multiplicity="1" />
+    <End Role="Compositions" Type="Self.Compositions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Components">
+        <PropertyRef Name="ComponentId" />
+      </Principal>
+      <Dependent Role="Compositions">
+        <PropertyRef Name="ComponentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerOrders_Counterparties">
+    <End Role="Counterparties" Type="Self.Counterparties" Multiplicity="1" />
+    <End Role="CustomerOrders" Type="Self.CustomerOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Counterparties">
+        <PropertyRef Name="CounterpartyId" />
+      </Principal>
+      <Dependent Role="CustomerOrders">
+        <PropertyRef Name="CounterpartyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CandyFactoryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Boxes" EntityType="Self.Boxes" />
+    <EntitySet Name="Candies" EntityType="Self.Candies" />
+    <EntitySet Name="ComponentOrders" EntityType="Self.ComponentOrders" />
+    <EntitySet Name="Components" EntityType="Self.Components" />
+    <EntitySet Name="Compositions" EntityType="Self.Compositions" />
+    <EntitySet Name="Counterparties" EntityType="Self.Counterparties" />
+    <EntitySet Name="CustomerOrders" EntityType="Self.CustomerOrders" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Boxes_Candies" Association="Self.FK_Boxes_Candies">
+      <End Role="Candies" EntitySet="Candies" />
+      <End Role="Boxes" EntitySet="Boxes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerOrders_Boxes" Association="Self.FK_CustomerOrders_Boxes">
+      <End Role="Boxes" EntitySet="Boxes" />
+      <End Role="CustomerOrders" EntitySet="CustomerOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Composition_Candies" Association="Self.FK_Composition_Candies">
+      <End Role="Candies" EntitySet="Candies" />
+      <End Role="Compositions" EntitySet="Compositions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComponentOrders_Components" Association="Self.FK_ComponentOrders_Components">
+      <End Role="Components" EntitySet="Components" />
+      <End Role="ComponentOrders" EntitySet="ComponentOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComponentOrders_Counterparties" Association="Self.FK_ComponentOrders_Counterparties">
+      <End Role="Counterparties" EntitySet="Counterparties" />
+      <End Role="ComponentOrders" EntitySet="ComponentOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComponentOrders_CustomerOrders" Association="Self.FK_ComponentOrders_CustomerOrders">
+      <End Role="CustomerOrders" EntitySet="CustomerOrders" />
+      <End Role="ComponentOrders" EntitySet="ComponentOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Components_Counterparties" Association="Self.FK_Components_Counterparties">
+      <End Role="Counterparties" EntitySet="Counterparties" />
+      <End Role="Components" EntitySet="Components" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Composition_Components" Association="Self.FK_Composition_Components">
+      <End Role="Components" EntitySet="Components" />
+      <End Role="Compositions" EntitySet="Compositions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerOrders_Counterparties" Association="Self.FK_CustomerOrders_Counterparties">
+      <End Role="Counterparties" EntitySet="Counterparties" />
+      <End Role="CustomerOrders" EntitySet="CustomerOrders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
