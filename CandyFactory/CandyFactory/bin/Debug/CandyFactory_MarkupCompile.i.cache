@@ -1,0 +1,20 @@
+﻿CandyFactory
+
+
+winexe
+C#
+.cs
+D:\ПКС-405\Окулов Сергей\MS SQL\CandyFactory\CandyFactory\obj\Debug\
+CandyFactory
+none
+false
+DEBUG;TRACE
+D:\ПКС-405\Окулов Сергей\MS SQL\CandyFactory\CandyFactory\App.xaml
+21469569718
+21750853300
+41699780757
+18-761238225
+MainWindow.xaml;pages\AddBoxPage.xaml;pages\AddCandyPage.xaml;pages\AddComponentPage.xaml;pages\AddCompositionPage.xaml;pages\AddCounterpartyPage.xaml;pages\AddCustomerOrderPage.xaml;pages\BoxesPage.xaml;pages\CandiesPage.xaml;pages\ComponentOrdersPage.xaml;pages\ComponentsPage.xaml;pages\CompositionsPage.xaml;pages\CounterpartiesPage.xaml;pages\CustomerOrdersPage.xaml;pages\EditBoxPage.xaml;pages\EditCandyPage.xaml;pages\EditComponentPage.xaml;pages\EditCompositionPage.xaml;pages\EditCounterpartyPage.xaml;pages\EditCustomerOrderPage.xaml;pages\MainPage.xaml;
+
+False
+
